@@ -1,13 +1,15 @@
+import 'bootstrap/dist/css/bootstrap.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Routes, Route, BrowserRouter as Router, useRoutes } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Router> 
     <App />
-  </React.StrictMode>,
+  </Router>,
   document.getElementById('root')
 );
 

@@ -1,14 +1,5 @@
 import React, { Component } from 'react';
-import { Routes, Route, BrowserRouter as Router, useRoutes } from 'react-router';
-import { Layout } from './components/Layout';
-import { NavMenu } from './components/NavMenu';
-import { Home } from './components/Home';
-import { FetchData } from './components/FetchData';
-import { Counter } from './components/Counter';
-import { Cats } from './components/Cats';
-import { Course } from './components/Course';
-import { Joke } from './components/Joke';
-import './custom.css'
+
 export default class App extends Component {
     static displayName = App.name;
 
@@ -52,17 +43,11 @@ export default class App extends Component {
             : App.renderForecastsTable(this.state.forecasts);
 
         return (
-            <Layout>
-                <Routes>
-                <Route exact path='/' element={<Home/>} />
-                    <Route path='/counter' element={<Counter/>} />
-                    <Route path='/fetch-data' element={<FetchData/>} />
-                    <Route path='/cats' element={<Cats />} />
-                    <Route path='/course' element={<Course />} />
-                    <Route path='/joke' element={<Joke />} />
-                </Routes>
-            </Layout>
-
+            <div>
+                <h1 id="tabelLabel" >Weather forecast</h1>
+                <p>This component demonstrates fetching data from the server.</p>
+                {contents}
+            </div>
         );
     }
 

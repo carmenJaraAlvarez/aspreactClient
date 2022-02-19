@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import { Routes, Route, BrowserRouter as Router, useRoutes } from 'react-router';
+import { Route } from 'react-router';
 import { Layout } from './components/Layout';
-import { NavMenu } from './components/NavMenu';
 import { Home } from './components/Home';
 import { FetchData } from './components/FetchData';
 import { Counter } from './components/Counter';
 import { Cats } from './components/Cats';
-import { Course } from './components/Course';
-import { Joke } from './components/Joke';
+
 import './custom.css'
+
 export default class App extends Component {
     static displayName = App.name;
 
@@ -46,25 +45,18 @@ export default class App extends Component {
         );
     }
 
-    render() {
-        let contents = this.state.loading
-            ? <p><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationreact">https://aka.ms/jspsintegrationreact</a> for more details.</em></p>
-            : App.renderForecastsTable(this.state.forecasts);
 
-        return (
-            <Layout>
-                <Routes>
-                <Route exact path='/' element={<Home/>} />
-                    <Route path='/counter' element={<Counter/>} />
-                    <Route path='/fetch-data' element={<FetchData/>} />
-                    <Route path='/cats' element={<Cats />} />
-                    <Route path='/course' element={<Course />} />
-                    <Route path='/joke' element={<Joke />} />
-                </Routes>
-            </Layout>
-
-        );
-    }
+        render() {
+            return (
+                <Layout>
+                    <Route exact path='/' component={Home} />
+                    <Route path='/counter' component={Counter} />
+                    <Route path='/fetch-data' component={FetchData} />
+                    <Route path='/cats' component={Cats} />
+                </Layout>
+            );
+        }
+  
 
     async populateWeatherData() {
         const response = await fetch('https://localhost:7114/WeatherForecast');
@@ -73,3 +65,4 @@ export default class App extends Component {
         this.setState({ forecasts: data, loading: false });
     }
 }
+

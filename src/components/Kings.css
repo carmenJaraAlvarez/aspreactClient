@@ -1,0 +1,30 @@
+﻿* {
+    margin: 5px;
+}
+.myking {
+    color: white;
+    padding: 2px, 15px, 20px;
+    
+
+}
+.mykingFlex {
+    color: white;
+    padding: 2px, 15px, 20px;
+    width: 47%;
+    box-sizing: border-box;
+}
+img {
+    width: 100%;
+}
+
+.kings {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+    grid-column-gap:10px;
+
+}
+.kingsFlex {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
