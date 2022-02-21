@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import './NavMenu.css';
+import checkUserPermission from "../utils/checkUserPermission";
 
 export class NavMenu extends Component {
   static displayName = NavMenu.name;
@@ -48,9 +49,13 @@ export class NavMenu extends Component {
                             <NavItem>
                                 <NavLink tag={Link} className="text-dark" to="/joke">Jokes</NavLink>
                             </NavItem>
-                            <NavItem>
-                                <NavLink tag={Link} className="text-dark" to="/admin">Admin</NavLink>
-                            </NavItem>
+                           
+                            {checkUserPermission(this.state.user, "route.admin") ?
+                                (<NavItem>
+                                    <NavLink tag={Link} className="text-dark" to="/admin">Admin</NavLink>
+                                </NavItem>)
+                                :
+                                (<br/>)}
                         </ul>
                    </Collapse>
                   
