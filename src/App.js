@@ -8,13 +8,18 @@ import { Counter } from './components/Counter';
 import { Cats } from './components/Cats';
 import { Course } from './components/Course';
 import { Joke } from './components/Joke';
-import './custom.css'
+import { Admin } from './components/Admin';
+import './custom.css';
+import checkUserPermission from "./utils/checkUserPermission";
+
+
 export default class App extends Component {
     static displayName = App.name;
+    
 
     constructor(props) {
         super(props);
-        this.state = { forecasts: [], loading: true };
+        this.state = { forecasts: [], loading: true, user: { roles: ["admin"] }};
     }
 
     componentDidMount() {
@@ -60,6 +65,12 @@ export default class App extends Component {
                     <Route path='/cats' element={<Cats />} />
                     <Route path='/course' element={<Course />} />
                     <Route path='/joke' element={<Joke />} />
+                    {checkUserPermission(this.state.user, "route.admin") ?
+                        (<Route exact path='/admin' element={<Admin />} />)
+                            :
+                            (<Route exact path = '/' element = { <Home/>} />)}
+   
+
                 </Routes>
             </Layout>
 
