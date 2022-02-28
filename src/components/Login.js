@@ -1,6 +1,7 @@
 ﻿import React, { useState } from "react";
 import PropTypes from 'prop-types';
 import "./Login.css";
+//import MD5 from "crypto-js/md5";
 
 export function Login({ setToken }) {
     const [username, setUserName] = useState();
@@ -12,6 +13,7 @@ export function Login({ setToken }) {
 
     const handleSubmit = async e => {
         e.preventDefault();
+        
         const token = await loginUser({
             username,
             password
@@ -31,6 +33,9 @@ export function Login({ setToken }) {
             .then(res => {
                 if (res) {
                     console.log('ok');
+                    const rol = res.roles[0];
+                    console.log(rol);
+                    setToken("111");
                 }
             })
             
@@ -56,7 +61,12 @@ export function Login({ setToken }) {
                 <label>
                         Password:
                         <br/>
-                            <input type="password" onChange={e => setPassword(e.target.value)} />
+                            <input type="password" onChange={e => {
+                                var md5 = require('md5');
+                                let hashed = md5(e.target.value);
+                                setPassword(hashed);
+
+                            }} />
                         </label>
                     </div>
                     <br/>
