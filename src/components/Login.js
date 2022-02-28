@@ -1,4 +1,4 @@
-﻿import React, { useState } from "react";
+import React, { useState } from "react";
 import PropTypes from 'prop-types';
 import "./Login.css";
 //import MD5 from "crypto-js/md5";
@@ -18,7 +18,10 @@ export function Login({ setToken }) {
             username,
             password
         });
-       setToken(token);
+       
+    }
+    function setSToken(userToken) {
+        sessionStorage.setItem('token', JSON.stringify(userToken));
     }
     async function loginUser(credentials) {
         console.log(credentials);
@@ -36,6 +39,8 @@ export function Login({ setToken }) {
                     const rol = res.roles[0];
                     console.log(rol);
                     setToken("111");
+                    setSToken("111");
+
                 }
             })
             

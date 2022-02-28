@@ -12,10 +12,19 @@ export class Home extends Component {
         };
     }
     setToken=(t)=>{
-        this.setState({ token: t});
+        this.setState({ token: t });
+        this.setState(this.state);
     }
 
     render() {
+        let logForm;
+        if (!this.state.token) {
+            logForm = <Login setToken={this.setToken} />;
+        }
+        else {
+            logForm = <></>;
+        }
+
       
     return (
       <div>
@@ -27,9 +36,7 @@ export class Home extends Component {
                 <li><a href='http://getbootstrap.com/'>Bootstrap</a> for layout and styling</li>
                 <li><a href='https://www.mongodb.com/'>MongoDB</a> for database </li>
             </ul>
-            if(!token) {
-                <Login setToken={this.setToken} />
-            }
+            { logForm}
             {console.log("in home"+this.state.token)}
           
       </div>
